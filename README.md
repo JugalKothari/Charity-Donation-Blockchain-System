@@ -37,7 +37,7 @@ To run the Charity Donation System locally, follow these steps:
 1. After installing dependencies in the `charitydonation` folder, run the following command to deploy the smart contract:
 
    ```bash
-   npm run deploy
+   npx thirdweb deploy -t SECRET_KEY
    ```
 
 2. You will receive a link to deploy your smart contract on Thirdweb.
