@@ -6,7 +6,10 @@ import { defineChain } from "thirdweb/chains";
 import { createThirdwebClient, getContract } from 'thirdweb';
 
 const StateContext = createContext();
-const client=createThirdwebClient({clientId:"07baf930ed674143787a0996a7bd15d7", secretKey:"5eZv9eF-9imb8mX_mxUkp4bfiqZJiRCtGp3WuLRvm79H2yj20zdgBhHQR1KZuHRSltLaBtl-3P4ZrNDVVoI45g"})
+const client = createThirdwebClient({
+  clientId: "YOUR_CLIENT_ID",
+  secretKey: "YOUR_SECRET_KEY"
+});
 // const connect = (
 //   <button
 //     onClick={() =>
@@ -36,13 +39,10 @@ const client=createThirdwebClient({clientId:"07baf930ed674143787a0996a7bd15d7", 
 // )
 
 export const StateContextProvider = ({ children }) => {
-  //const client=createThirdwebClient({clientId:"07baf930ed674143787a0996a7bd15d7", secretKey:"5eZv9eF-9imb8mX_mxUkp4bfiqZJiRCtGp3WuLRvm79H2yj20zdgBhHQR1KZuHRSltLaBtl-3P4ZrNDVVoI45g"})
-  //const  mycontract  = getContract({client,chain: defineChain(11155111), address: '0x2337Be73727a36fF9fd4E8a7F725E14cAd3B6120'})
-  //console.log(mycontract)
-  const { contract } = useContract('0x677b14639105Dbaf65D40a617597D5c9b12E9453');
+  const { contract } = useContract("YOUR_CONTRACT_ADDRESS");
   console.log(contract)
   const { mutateAsync: createCampaign ,isLoading, error} = useContractWrite(contract, 'createCampaign');
-  const address = "0x677b14639105Dbaf65D40a617597D5c9b12E9453"
+  const address = "YOUR_CONTRACT_ADDRESS";
 
   const connectWallet = async () => {
     try {
