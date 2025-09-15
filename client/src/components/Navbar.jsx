@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { createThirdwebClient } from "thirdweb";
-import { useConnect } from "thirdweb/react";
-import { createWallet, injectedProvider } from "thirdweb/wallets";
+
 import { useStateContext } from '../context';
 import { CustomButton } from './';
 import { logo, menu, search, thirdweb } from '../assets';
 import { navlinks } from '../constants';
+import Connectbutton from './Connectbutton';
 
 const client = createThirdwebClient({ clientId : "07baf930ed674143787a0996a7bd15d7"});
 
@@ -17,8 +17,8 @@ const Navbar = () => {
   const {address, connectWallet } = useStateContext();
   const handleConnect = async () => {
     try {
-      const wallet = await connectWallet();
-      console.log("Connected wallet:", wallet);
+      await connectWallet("injected");
+      console.log("Wallet connected:", address);
     } catch (error) {
       console.error("Error connecting wallet:", error);
     }
@@ -33,7 +33,10 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* <Connectbutton /> */}
+
       <div className="sm:flex hidden flex-row justify-end gap-4">
+        {address?
         <CustomButton 
           btnType="button"
           title={address ? 'Create a charity' : 'Connect'}
@@ -42,7 +45,7 @@ const Navbar = () => {
             if(address) navigate('create-campaign')
             else handleConnect()
           }}
-        />
+        />:<Connectbutton />}
 
         <Link to="/profile">
           <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
